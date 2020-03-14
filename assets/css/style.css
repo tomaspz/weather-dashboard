@@ -2,6 +2,13 @@ header h1 {
     color: white;
 }
 
-.card {
+form {
     margin-top: 20px;
 }
+
+.card {
+    margin-top: 20px;
+    margin-left: 20px;
+}
+
+
