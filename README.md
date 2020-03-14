@@ -8,7 +8,7 @@ The information retrived for a specific city is saved in `localStorage` to store
 This weather dashboard is perfect for a person traveling domestically or internationally that want to see the weather outlook for multiple cities.
 This weather dashboard allows a traveler to plan a trip accordingly.
 
-## Features
+## Features:
 
 * This weather dashboard has form inputs.
 * When the user searchs for a city, it is presented with current and future conditions for that city.
@@ -36,8 +36,8 @@ This weather dashboard allows a traveler to plan a trip accordingly.
 ## Screenshot:
 
 
-## URL of the deployed application.
+## URL of the deployed application:
 
 
-## URL of the GitHub repository.
+## URL of the GitHub repository:
 
