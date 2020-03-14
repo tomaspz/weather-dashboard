@@ -35,7 +35,6 @@ This weather dashboard allows a traveler to plan a trip accordingly.
 
 ## Screenshot:
 
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
 
 ## URL of the deployed application.
 
