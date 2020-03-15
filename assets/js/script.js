@@ -19,6 +19,8 @@ $(function () {
             dataType: 'json',
             success: function (response1) {
                 console.log(response1);
+
+                // Make an ajax call to get the UV Index
                $.ajax({ 
                     url: 'http://api.openweathermap.org/data/2.5/uvi?appid=b5540c4c5b50c563c63c9a4c1e188656&lat=' + response1.coord.lat + '&lon=' + response1.coord.lon + '',
                     method: "GET",
@@ -34,75 +36,32 @@ $(function () {
                         // Save element in local storage
                         localStorage.setItem(response1.name, cardBodyEl);
 
-                        // Create the city button on the left
+                        // Create the city button on the left column
                         var cityButtonEl = $("<button type='button' class='btn btn-outline-info btn-block text-grey lighten-3'>"+ response1.name+"</button>");
 
-                        // Append the city button to the aside
+                        // Append the city button to the left column
                         $(".btn-group-vertical").append(cityButtonEl);
-                    }
-               });
-            }
-        });
+
+                        // Make an ajax call to get the 5 days forecast
+                        $.ajax({ 
+                            url: 'http://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&appid=b5540c4c5b50c563c63c9a4c1e188656&lat',
+                            method: "GET",
+                            dataType: 'json',
+                            success: function (response3) {
+                                console.log(response3);
+
+                            } // end of success response 3
+                            
+                        }); // end of ajax call 3
+
+                    } // end of success response 2
+
+               }); // end of ajax call 2
+
+            } // end of success response 1
+
+        }); // end of ajax call 1
+
+    }); // end of on click function
         
-    
-
-        
-
-        
-        //     });
-        // }
-
-        // $.ajax({
-        //     url: queryURL,
-        //     method: "GET"
-        //   }).then(function(response){
-            // console.log(response.name);
-            
-            // Get the UV index URL + make an ajax call + get the uv index
-
-            // $.ajax({
-            //     url: uvIndex,
-            //     method: "GET"
-            //   }).then(function(uv){
-            //     return uv.value;
-            // });
-
-        
-
-            
-            
-        
-            
-            
-        
-
-    });
-
-}); // End of document. ready
-
-
-
-
-/*  
-    $.when( getCityInfo(searchCity),
-            getUVInfo(lat, lon)
-          ).done(function(searchCityArg, latArg, lonArg){
-        var allResponses = [].concat(searchCityArg[0]).concat(latArg[0]).concat(lonArg[0]);
-        showTweets(allResponses);
-          });
-    
-   
-    
-    var getCityInfo = function(city){
-        var url='https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=b5540c4c5b50c563c63c9a4c1e188656';
-        return $.get(url, {count:5}, null, 'jsonp');
-    }
-    
-    var getUVInfo = function(lat, lon){
-        $.each(tweets, function(){
-            $("#tweets").append( '<li class="'+ this.user.screen_name+'">' +
-                                 this.user.screen_name +': ' + this.text + '</li>' );
-        });
-    };
-    
-*/
+}); // End of document ready  
