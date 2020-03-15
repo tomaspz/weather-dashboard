@@ -6,9 +6,46 @@ form {
     margin-top: 20px;
 }
 
+#five-day-cards {
+    display: inline-block;
+}
+
+.col-3 {
+    margin-left: 13px;
+    background-color: #f8f9fa;
+}
+
 .card {
     margin-top: 20px;
+    margin-left: 10px;
+}
+
+.btn-group-vertical {
+    margin-top: 20px;
+    margin-left: 0px;
+
+}
+
+.forecast {
+    margin-top: 20px;
+}
+
+.five-day {
     margin-left: 20px;
 }
 
+.bg-primary {
+    width: 20%;
+    display: inline-block;
+}
 
+.pb-3 {
+    background-color: #007bff;
+    color: white;
+}
+
+/*
+
+cards blue 007bff
+
+*/

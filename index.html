@@ -32,12 +32,17 @@
 
             <div class="row">
 
-                <div class="col-4"">
+                <div class="col-3"">
                     <form class="form-inline">
                         <h6>Search for a City:</h6>
                         <input class="form-control" type="search" placeholder="Search" aria-label="Search">
                         <button id="searchbtn" class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
                     </form>
+                    <div class="btn-group-vertical col-12">
+                        <button type="button" class="btn btn-outline-info btn-block">City 1</button>
+                        <button type="button" class="btn btn-outline-info btn-block">City 2</button>
+                        <button type="button" class="btn btn-outline-info btn-block">City 3</button>
+                    </div>
                 </div>
 
                 <div class="col-8">
@@ -50,7 +55,27 @@
                           <p class="wind">Wind Speed:</p>
                           <p class="uv">UV Index:</p>
                         </div>
-                      </div>
+                    </div>
+
+                    <div class="container forecast">
+                        <div class="row"> 
+                            <h5 class="col-12 five-day-title">5-Day Forecast:</h5>
+                        </div>
+                        <div id="five-day-cards" class="row">
+                            <div class="card weather-card">
+                                <div class="card-body pb-3">
+                                    <h6 class="date">8/16/2019</h6>
+                                    <div class="d-flex justify-content-between"><i class="fas"></i></div>
+                                    <p>Temperature: </p>
+                                    <p>Humidity: </p>
+                                </div>
+                            </div>
+                            
+                            
+                        </div>
+                    </div>
+
+
                     
                 </div>
                 
@@ -64,6 +89,44 @@
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+
         <script src="./assets/js/script.js" async defer></script>
     </body>
 </html>
+
+
+<!-- <div class="card bg-primary text-white">
+        <div class="card-body">Card 1</div>
+    </div>
+    <div class="card bg-primary text-white">
+        <div class="card-body">Card 2</div>
+    </div>
+    <div class="card bg-primary text-white">
+        <div class="card-body">Card 3</div>
+    </div>
+    <div class="card bg-primary text-white">
+        <div class="card-body">Card 4</div>
+    </div>
+    <div class="card bg-primary text-white">
+        <div class="card-body">Card 5</div>
+    </div> -->
+
+ 
+
+
+<!-- <div class="col-2 blue-box">
+                                <p>This is a test</p>
+                            </div>
+                            <div class="col-2 blue-box">
+
+                            </div>
+                            <div class="col-2 blue-box">
+
+                            </div>
+                            <div class="col-2 blue-box">
+
+                            </div>
+                            <div class="col-2 blue-box">
+
+                            </div> -->
