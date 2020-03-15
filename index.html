@@ -35,25 +35,36 @@
                 <div class="col-3"">
                     <form class="form-inline">
                         <h6>Search for a City:</h6>
-                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                        <button id="searchbtn" class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button>
+                        <div class="input-group md-form form-sm form-2 pl-0">
+                            <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                              <span class="input-group-text blue lighten-3" id="basic-text1"><i class="fas fa-search text-white"></i></span>
+                            </div>
+                        </div>
+                        
                     </form>
                     <div class="btn-group-vertical col-12">
-                        <button type="button" class="btn btn-outline-info btn-block">City 1</button>
-                        <button type="button" class="btn btn-outline-info btn-block">City 2</button>
-                        <button type="button" class="btn btn-outline-info btn-block">City 3</button>
+                        <button type="button" class="btn btn-outline-info btn-block text-grey lighten-3">City 1</button>
+                        <button type="button" class="btn btn-outline-info btn-block text-grey lighten-3">City 2</button>
+                        <button type="button" class="btn btn-outline-info btn-block text-grey lighten-3">City 3</button>
                     </div>
                 </div>
 
-                <div class="col-8">
+                <div class="col-9 align-self-end">
                     
-                    <div class="card">
+                    <div id="cityinfo" class="card">
                         <div class="card-body">
-                          <h5 class="card-title">Atlanta <span>Date </span><span>Icon</span></h5>
-                          <p class="temp">Temperature:</p> 
-                          <p class="hum">Humidity:</p>
-                          <p class="wind">Wind Speed:</p>
-                          <p class="uv">UV Index:</p>
+                            <h5 class="card-title">Atlanta (<span id="todayDate">Date </span>)<span id="iconTodayWeather"><i class="fas fa-cloud-sun-rain fa-lg text-info"></i></span></h5>
+                            <div class="weather-info">
+                                <p class="temp">Temperature:</p> 
+                                <p class="hum">Humidity:</p>
+                                <p class="wind">Wind Speed:</p>
+                                <p class="uv">UV Index: 
+                                    <span>
+                                        <button id="uvindex" type="button" class="btn text-white">9.49</button>
+                                    </span>
+                                </p>
+                            </div>
                         </div>
                     </div>
 
@@ -62,16 +73,16 @@
                             <h5 class="col-12 five-day-title">5-Day Forecast:</h5>
                         </div>
                         <div id="five-day-cards" class="row">
+
                             <div class="card weather-card">
                                 <div class="card-body pb-3">
                                     <h6 class="date">8/16/2019</h6>
-                                    <div class="d-flex justify-content-between"><i class="fas"></i></div>
-                                    <p>Temperature: </p>
+                                    <div id="icondiv" class="d-flex justify-content-between"><i class="fas fa-cloud-sun-rain fa-lg text-info"></i></div>
+                                    <p>Temp: </p>
                                     <p>Humidity: </p>
                                 </div>
-                            </div>
-                            
-                            
+                            </div> 
+
                         </div>
                     </div>
 
@@ -96,37 +107,6 @@
 </html>
 
 
-<!-- <div class="card bg-primary text-white">
-        <div class="card-body">Card 1</div>
-    </div>
-    <div class="card bg-primary text-white">
-        <div class="card-body">Card 2</div>
-    </div>
-    <div class="card bg-primary text-white">
-        <div class="card-body">Card 3</div>
-    </div>
-    <div class="card bg-primary text-white">
-        <div class="card-body">Card 4</div>
-    </div>
-    <div class="card bg-primary text-white">
-        <div class="card-body">Card 5</div>
-    </div> -->
 
- 
-
-
-<!-- <div class="col-2 blue-box">
-                                <p>This is a test</p>
-                            </div>
-                            <div class="col-2 blue-box">
-
-                            </div>
-                            <div class="col-2 blue-box">
-
-                            </div>
-                            <div class="col-2 blue-box">
-
-                            </div>
-                            <div class="col-2 blue-box">
-
-                            </div> -->
+<!-- <input class="form-control" type="search"></input>
+<button id="searchbtn" class="btn btn-primary" type="submit"><i class="fas fa-search"></i></button> -->
