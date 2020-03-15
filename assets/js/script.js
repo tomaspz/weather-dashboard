@@ -9,26 +9,25 @@ $(function () {
         var searchCity = $("input").val();
 
         // set the queryURL with the proper search query 
-        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&appid=b5540c4c5b50c563c63c9a4c1e188656";
+        var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&units=imperial&appid=b5540c4c5b50c563c63c9a4c1e188656";
 
-        // create a double ajax call to request the desired information for the city and the city uv index
-
+        // Make an ajax call to request the desired information for the city
         $.ajax({   
             url: queryURL,
             method: "GET",
             dataType: 'json',
             success: function (response1) {
-                console.log(response1);
+                // console.log(response1);
 
-                // Make an ajax call to get the UV Index
+                // Make a second ajax call to get the UV Index
                $.ajax({ 
                     url: 'http://api.openweathermap.org/data/2.5/uvi?appid=b5540c4c5b50c563c63c9a4c1e188656&lat=' + response1.coord.lat + '&lon=' + response1.coord.lon + '',
                     method: "GET",
                     dataType: 'json',
                     success: function (response2) {
-                        console.log(response2);
+                        // console.log(response2);
                         // Create the card element to display in the body of the card
-                        var cardBodyEl = $("<h5 class='card-title' data-city='citi-name'>"  + response1.name +  " (<span> " + moment().format('l') + " </span>)<img id='icon' src='http://openweathermap.org/img/wn/"+ response1.weather[0].icon +".png' alt='current weather icon'/></h5><div class='weather-info'><p class='temp'>Temperature: " + Math.floor((response1.main.temp * 9/5) - 459.67) + " ºF</p><p class='hum'>Humidity: " + response1.main.humidity + "%</p><p class='wind'>Wind Speed: " + response1.wind.speed + " MPH</p><p class='uv'>UV Index: <span><button id='uvindex' type='button' class='btn text-white'>" + response2.value + "</button></span></p></div>");
+                        var cardBodyEl = $("<h5 class='card-title' data-city='citi-name'>"  + response1.name +  " (<span> " + moment().format('l') + " </span>)<img id='icon' src='http://openweathermap.org/img/wn/"+ response1.weather[0].icon +".png' alt='current weather icon'/></h5><div class='weather-info'><p class='temp'>Temperature: " + response1.main.temp + " ºF</p><p class='hum'>Humidity: " + response1.main.humidity + "%</p><p class='wind'>Wind Speed: " + response1.wind.speed + " MPH</p><p class='uv'>UV Index: <span><button id='uvindex' type='button' class='btn text-white'>" + response2.value + "</button></span></p></div>");
 
                         // Append element to the card
                         $("#displaycity").append(cardBodyEl);
@@ -42,21 +41,56 @@ $(function () {
                         // Append the city button to the left column
                         $(".btn-group-vertical").append(cityButtonEl);
 
-                        // Make an ajax call to get the 5 days forecast
+                        // Make a third ajax call to get the 5 days forecast
                         $.ajax({ 
-                            url: 'http://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&appid=b5540c4c5b50c563c63c9a4c1e188656&lat',
+                            url: 'http://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&appid=b5540c4c5b50c563c63c9a4c1e188656',
                             method: "GET",
                             dataType: 'json',
                             success: function (response3) {
-                                console.log(response3);
+                                // console.log(response3);
+                                var currentDate = moment().format('YYYY-MM-DD HH:MM:SS');
+                                // console.log(currentDate);
+                                var currentHour = moment().format('HH');
+                                // console.log(currentHour);
+                                var fiveDaysArray = [];
+                                
+                                for(i=0; i<40; i++){
+                                    
+                                    var nextDayHour = moment(response3.list[i].dt_txt).format('HH');
+                                    // console.log(nextDayHour);
+                                    
+                                    if(nextDayHour == currentHour) {
+                                        // console.log(response3.list[i]);
+                                        fiveDaysArray.push(response3.list[i]);
+                                    }
 
-                            } // end of success response 3
+                                    // Create the 5 day forecast elements
+
+
+                                }
+                                // console.log(fiveDaysArray);
+                                
+
+                                
+                                } // end of success response 3
                             
-                        }); // end of ajax call 3
+                            }); // end of ajax call 3
 
-                    } // end of success response 2
+                                } // end of success response 2
 
-               }); // end of ajax call 2
+                        }); // end of ajax call 2
+
+            //    // Make a third ajax call to get the 5 days forecast
+            //    $.ajax({ 
+            //     url: 'http://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&appid=b5540c4c5b50c563c63c9a4c1e188656&lat',
+            //     method: "GET",
+            //     dataType: 'json',
+            //     success: function (response3) {
+            //         console.log(response3);
+
+            //         } // end of success response 3
+                
+            //     }); // end of ajax call 3
 
             } // end of success response 1
 
