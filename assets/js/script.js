@@ -43,54 +43,28 @@ $(function () {
 
                         // Make a third ajax call to get the 5 days forecast
                         $.ajax({ 
-                            url: 'http://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&appid=b5540c4c5b50c563c63c9a4c1e188656',
+                            url: 'http://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&units=imperial&appid=b5540c4c5b50c563c63c9a4c1e188656',
                             method: "GET",
                             dataType: 'json',
                             success: function (response3) {
+
                                 // console.log(response3);
-                                var currentDate = moment().format('YYYY-MM-DD HH:MM:SS');
-                                // console.log(currentDate);
+                                console.log(response3.list);
+                                console.log(response3.list[0].dt_txt);
+                                console.log(moment(response3.list[0].dt_txt).format('HH'));
+
+                                // Check current hour
                                 var currentHour = moment().format('HH');
-                                // console.log(currentHour);
-                                var fiveDaysArray = [];
-                                
-                                for(i=0; i<40; i++){
-                                    
-                                    var nextDayHour = moment(response3.list[i].dt_txt).format('HH');
-                                    // console.log(nextDayHour);
-                                    
-                                    if(nextDayHour == currentHour) {
-                                        // console.log(response3.list[i]);
-                                        fiveDaysArray.push(response3.list[i]);
-                                    }
-
-                                    // Create the 5 day forecast elements
-
-
-                                }
-                                // console.log(fiveDaysArray);
-                                
 
                                 
-                                } // end of success response 3
-                            
-                            }); // end of ajax call 3
+                                
+                            } // end of success response 3
+                        
+                        }); // end of ajax call 3
 
-                                } // end of success response 2
+                    } // end of success response 2
 
-                        }); // end of ajax call 2
-
-            //    // Make a third ajax call to get the 5 days forecast
-            //    $.ajax({ 
-            //     url: 'http://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&appid=b5540c4c5b50c563c63c9a4c1e188656&lat',
-            //     method: "GET",
-            //     dataType: 'json',
-            //     success: function (response3) {
-            //         console.log(response3);
-
-            //         } // end of success response 3
-                
-            //     }); // end of ajax call 3
+                }); // end of ajax call 2
 
             } // end of success response 1
 
