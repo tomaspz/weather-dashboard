@@ -1,11 +1,11 @@
 $(function () {
 
     function generateCardBody(city){
-        return $("<h5 class='card-title' data-city='citi-name'>"  + city.name +  " (<span> " + moment().format('l') + " </span>)<img id='icon' src='http://openweathermap.org/img/wn/"+ city.icon +".png' alt='current weather icon'/></h5><div class='weather-info'><p class='temp'>Temperature: " + city.temp + " ºF</p><p class='hum'>Humidity: " + city.humidity + "%</p><p class='wind'>Wind Speed: " + city.wind + " MPH</p><p class='uv'>UV Index: <span><button id='uvindex' type='button' class='btn text-white'>" + city.uv + "</button></span></p></div>");
+        return $("<h5 class='card-title' data-city='citi-name'>"  + city.name +  " (<span> " + moment().format('l') + " </span>)<img id='icon' src='https://openweathermap.org/img/wn/"+ city.icon +".png' alt='current weather icon'/></h5><div class='weather-info'><p class='temp'>Temperature: " + city.temp + " ºF</p><p class='hum'>Humidity: " + city.humidity + "%</p><p class='wind'>Wind Speed: " + city.wind + " MPH</p><p class='uv'>UV Index: <span><button id='uvindex' type='button' class='btn text-white'>" + city.uv + "</button></span></p></div>");
     }
 
     function generateFiveDay(forecast){
-        return $("<div class='card weather-card'><div class='card-body pb-3'><h6 class='date'>"+ forecast.date +"</h6><div id='icondiv' class='d-flex justify-content-between'><img src='http://openweathermap.org/img/wn/"+ forecast.icon +".png'></i></div><p>Temp: "+forecast.temp+" </p><p>Humidity: " +forecast.humidity+"</p></div></div>");
+        return $("<div class='card weather-card'><div class='card-body pb-3'><h6 class='date'>"+ forecast.date +"</h6><div id='icondiv' class='d-flex justify-content-between'><img src='https://openweathermap.org/img/wn/"+ forecast.icon +".png'></i></div><p>Temp: "+forecast.temp+" </p><p>Humidity: " +forecast.humidity+"</p></div></div>");
     }
 
     function generateButton(city){
@@ -36,11 +36,10 @@ $(function () {
             method: "GET",
             dataType: 'json',
             success: function (response1) {
-                // console.log(response1);
 
                 // Make a second ajax call to get the UV Index
                $.ajax({ 
-                    url: 'http://api.openweathermap.org/data/2.5/uvi?appid=b5540c4c5b50c563c63c9a4c1e188656&lat=' + response1.coord.lat + '&lon=' + response1.coord.lon + '',
+                    url: 'https://api.openweathermap.org/data/2.5/uvi?appid=b5540c4c5b50c563c63c9a4c1e188656&lat=' + response1.coord.lat + '&lon=' + response1.coord.lon + '',
                     method: "GET",
                     dataType: 'json',
                     success: function (response2) {
@@ -53,20 +52,10 @@ $(function () {
 
                         // Make a third ajax call to get the 5 days forecast
                         $.ajax({ 
-                            url: 'http://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&units=imperial&appid=b5540c4c5b50c563c63c9a4c1e188656',
+                            url: 'https://api.openweathermap.org/data/2.5/forecast?q='+ response1.name +'&units=imperial&appid=b5540c4c5b50c563c63c9a4c1e188656',
                             method: "GET",
                             dataType: 'json',
                             success: function (response3) {
-
-                                // console.log(response3);
-                                // console.log(response3.list);
-                                // console.log(response3.list[0].dt_txt);
-                                // console.log(moment(response3.list[0].dt_txt).format('HH'));
-                                 
-
-                                // Check current hour
-                                var currentHour = moment().format('HH');
-                                // console.log(currentHour);
                                 
                                 var fiveDayArray = [];
 
@@ -138,8 +127,10 @@ $(function () {
     }); // end of on click function
 
     $(".btn-group-vertical").on("click", function(event){
+
         $(".card-body").empty();
         $("#five-day-cards").empty();
+
         event.preventDefault();
         var name = event.target.id;
         
