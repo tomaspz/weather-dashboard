@@ -49,15 +49,26 @@ $(function () {
                             success: function (response3) {
 
                                 // console.log(response3);
-                                console.log(response3.list);
-                                console.log(response3.list[0].dt_txt);
-                                console.log(moment(response3.list[0].dt_txt).format('HH'));
+                                // console.log(response3.list);
+                                // console.log(response3.list[0].dt_txt);
+                                // console.log(moment(response3.list[0].dt_txt).format('HH'));
+                                 
 
                                 // Check current hour
                                 var currentHour = moment().format('HH');
+                                // console.log(currentHour);
+                                
+                                var fiveDayArray = [];
 
-                                
-                                
+                                for(var i=0; i<response3.list.length; i++) {
+                                    var dayHour = moment(response3.list[i].dt_txt).format('HH');
+                                    if(dayHour === "06") {
+                                        fiveDayArray.push(response3.list[i]);
+                                    }
+                                }
+
+                                console.log(fiveDayArray);
+
                             } // end of success response 3
                         
                         }); // end of ajax call 3
