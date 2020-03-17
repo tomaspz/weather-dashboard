@@ -1,12 +1,31 @@
 $(function () {
-    
+
+    function generateCardBody(city){
+        return $("<h5 class='card-title' data-city='citi-name'>"  + city.name +  " (<span> " + moment().format('l') + " </span>)<img id='icon' src='http://openweathermap.org/img/wn/"+ city.icon +".png' alt='current weather icon'/></h5><div class='weather-info'><p class='temp'>Temperature: " + city.temp + " ºF</p><p class='hum'>Humidity: " + city.humidity + "%</p><p class='wind'>Wind Speed: " + city.wind + " MPH</p><p class='uv'>UV Index: <span><button id='uvindex' type='button' class='btn text-white'>" + city.uv + "</button></span></p></div>");
+    }
+
+    function generateFiveDay(forecast){
+        return $("<div class='card weather-card'><div class='card-body pb-3'><h6 class='date'>"+ forecast.date +"</h6><div id='icondiv' class='d-flex justify-content-between'><img src='http://openweathermap.org/img/wn/"+ forecast.icon +".png'></i></div><p>Temp: "+forecast.temp+" </p><p>Humidity: " +forecast.humidity+"</p></div></div>");
+    }
+
+    function generateButton(city){
+        return $("<button type='button' id='"+city+"' class='btn btn-outline-info btn-block text-grey lighten-3'>"+ city+"</button>");
+    }
+
     $("#basic-text1").on("click", function(event){
 
         // the default action is to refresh the page
         event.preventDefault();
 
+        $(".card-body").empty();
+        $("#five-day-cards").empty();
+
         // grab the text inside the input field
         var searchCity = $("input").val();
+        
+        var cities = [];
+        cities.push(searchCity);
+        
 
         // set the queryURL with the proper search query 
         var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + searchCity + "&units=imperial&appid=b5540c4c5b50c563c63c9a4c1e188656";
@@ -25,18 +44,9 @@ $(function () {
                     method: "GET",
                     dataType: 'json',
                     success: function (response2) {
-                        // console.log(response2);
-                        // Create the card element to display in the body of the card
-                        var cardBodyEl = $("<h5 class='card-title' data-city='citi-name'>"  + response1.name +  " (<span> " + moment().format('l') + " </span>)<img id='icon' src='http://openweathermap.org/img/wn/"+ response1.weather[0].icon +".png' alt='current weather icon'/></h5><div class='weather-info'><p class='temp'>Temperature: " + response1.main.temp + " ºF</p><p class='hum'>Humidity: " + response1.main.humidity + "%</p><p class='wind'>Wind Speed: " + response1.wind.speed + " MPH</p><p class='uv'>UV Index: <span><button id='uvindex' type='button' class='btn text-white'>" + response2.value + "</button></span></p></div>");
-
-                        // Append element to the card
-                        $("#displaycity").append(cardBodyEl);
-
-                        // Save element in local storage
-                        localStorage.setItem(response1.name, cardBodyEl);
 
                         // Create the city button on the left column
-                        var cityButtonEl = $("<button type='button' class='btn btn-outline-info btn-block text-grey lighten-3'>"+ response1.name+"</button>");
+                        var cityButtonEl = generateButton(response1.name);
 
                         // Append the city button to the left column
                         $(".btn-group-vertical").append(cityButtonEl);
@@ -70,17 +80,48 @@ $(function () {
 
                                 }
 
-                                console.log(fiveDayArray);
+                                fiveDayForecast = [];
 
                                 for(var i=0; i<fiveDayArray.length; i++){
 
-                                    // Create the 5 day forecast elements and add the content
-                                    var fiveDayForecastEl = $("<div class='card weather-card'><div class='card-body pb-3'><h6 class='date'>"+ moment(fiveDayArray[i].dt_txt).format('MM/DD/YYYY') +"</h6><div id='icondiv' class='d-flex justify-content-between'><img src='http://openweathermap.org/img/wn/"+ fiveDayArray[i].weather[0].icon +".png'></i></div><p>Temp: "+fiveDayArray[i].main.temp+" </p><p>Humidity: " +fiveDayArray[i].main.humidity+"</p></div></div>");
+                                    var forecast = {
+                                        date: moment(fiveDayArray[i].dt_txt).format('MM/DD/YYYY'),
+                                        icon: fiveDayArray[i].weather[0].icon,
+                                        temp: fiveDayArray[i].main.temp,
+                                        humidity: fiveDayArray[i].main.humidity    
+                                    }
 
+                                    fiveDayForecast.push(forecast);
+                                }
+                                var cityData = {
+                                    name: response1.name,
+                                    icon: response1.weather[0].icon,
+                                    temp: response1.main.temp,
+                                    humidity: response1.main.humidity,
+                                    wind: response1.wind.speed,
+                                    uv: response2.value
+                                }
+                                let merge = {
+                                    cityData: cityData, 
+                                    fiveDayForecast: fiveDayForecast
+                                };
+                                // console.log(merge);
+
+                                localStorage.setItem(response1.name, JSON.stringify(merge));
+
+                                cityName = cities.pop();
+                                cityObj = JSON.parse(localStorage.getItem(cityName));
+
+                                cardBodyEl = generateCardBody(cityObj.cityData);
+                                $("#displaycity").append(cardBodyEl);
+
+                                // Create the 5 day forecast elements and add the content
+                                for (const dayForecast of cityObj.fiveDayForecast) {
+                                    fiveDayForecastEl = generateFiveDay(dayForecast);
                                     // Append the 5 cards
                                     $("#five-day-cards").append(fiveDayForecastEl);
-
                                 }
+                                
 
                             } // end of success response 3
                         
@@ -95,5 +136,25 @@ $(function () {
         }); // end of ajax call 1
 
     }); // end of on click function
+
+    $(".btn-group-vertical").on("click", function(event){
+        $(".card-body").empty();
+        $("#five-day-cards").empty();
+        event.preventDefault();
+        var name = event.target.id;
+        
+        cityObj = JSON.parse(localStorage.getItem(name));
+
+        cardBodyEl = generateCardBody(cityObj.cityData);
+        $("#displaycity").append(cardBodyEl);
+
+        // Create the 5 day forecast elements and add the content
+        for (const dayForecast of cityObj.fiveDayForecast) {
+            fiveDayForecastEl = generateFiveDay(dayForecast);
+            // Append the 5 cards
+            $("#five-day-cards").append(fiveDayForecastEl);
+        }
+        
+    })
         
 }); // End of document ready  
