@@ -4,7 +4,7 @@ $(function () {
 
         // the default action is to refresh the page
         event.preventDefault();
-    
+
         // grab the text inside the input field
         var searchCity = $("input").val();
 
@@ -61,13 +61,26 @@ $(function () {
                                 var fiveDayArray = [];
 
                                 for(var i=0; i<response3.list.length; i++) {
+                                    // Get the hour of the day in the proper format
                                     var dayHour = moment(response3.list[i].dt_txt).format('HH');
+                                    // If the hour is 6 am, get the element in the array
                                     if(dayHour === "06") {
                                         fiveDayArray.push(response3.list[i]);
                                     }
+
                                 }
 
                                 console.log(fiveDayArray);
+
+                                for(var i=0; i<fiveDayArray.length; i++){
+
+                                    // Create the 5 day forecast elements and add the content
+                                    var fiveDayForecastEl = $("<div class='card weather-card'><div class='card-body pb-3'><h6 class='date'>"+ moment(fiveDayArray[i].dt_txt).format('MM/DD/YYYY') +"</h6><div id='icondiv' class='d-flex justify-content-between'><img src='http://openweathermap.org/img/wn/"+ fiveDayArray[i].weather[0].icon +".png'></i></div><p>Temp: "+fiveDayArray[i].main.temp+" </p><p>Humidity: " +fiveDayArray[i].main.humidity+"</p></div></div>");
+
+                                    // Append the 5 cards
+                                    $("#five-day-cards").append(fiveDayForecastEl);
+
+                                }
 
                             } // end of success response 3
                         
