@@ -35,7 +35,7 @@ This weather dashboard allows a traveler to plan a trip accordingly.
 
 ## Screenshot:
 
-[`Screenshot Weather_Dashboad`](./assets/img/screenshot_weather_dashboard.png)
+[`Screenshot Weather Dashboad`](./assets/img/screenshot_weather_dashboard.png)
 
 ## URL of the deployed application:
 
