@@ -35,9 +35,13 @@ This weather dashboard allows a traveler to plan a trip accordingly.
 
 ## Screenshot:
 
+[`screenshot_weather_dashboad`](assets/img/screenshot_weather_dashboard.png)
 
 ## URL of the deployed application:
 
+https://tomaspz.github.io/weather-dashboard/
 
 ## URL of the GitHub repository:
+
+https://github.com/tomaspz/weather-dashboard
 
