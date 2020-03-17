@@ -36,35 +36,24 @@
                     <form class="form-inline">
                         <h6>Search for a City:</h6>
                         <div class="input-group md-form form-sm form-2 pl-0">
-                            <input class="form-control my-0 py-1 red-border" type="text" placeholder="Search" aria-label="Search">
+                            <input class="form-control" type="text">
                             <div class="input-group-append">
-                              <span class="input-group-text blue lighten-3" id="basic-text1"><i class="fas fa-search text-white"></i></span>
+                              <span class="input-group-text" id="basic-text1"><i class="fas fa-search text-white"></i></span>
                             </div>
                         </div>
                         
                     </form>
                     <div class="btn-group-vertical col-12">
-                        <button type="button" class="btn btn-outline-info btn-block text-grey lighten-3">City 1</button>
-                        <button type="button" class="btn btn-outline-info btn-block text-grey lighten-3">City 2</button>
-                        <button type="button" class="btn btn-outline-info btn-block text-grey lighten-3">City 3</button>
+                        <!-- city buttons go here -->
                     </div>
                 </div>
 
                 <div class="col-9 align-self-end">
                     
                     <div id="cityinfo" class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">Atlanta (<span id="todayDate">Date </span>)<span id="iconTodayWeather"><i class="fas fa-cloud-sun-rain fa-lg text-info"></i></span></h5>
-                            <div class="weather-info">
-                                <p class="temp">Temperature:</p> 
-                                <p class="hum">Humidity:</p>
-                                <p class="wind">Wind Speed:</p>
-                                <p class="uv">UV Index: 
-                                    <span>
-                                        <button id="uvindex" type="button" class="btn text-white">9.49</button>
-                                    </span>
-                                </p>
-                            </div>
+                        <div id="displaycity" class="card-body">
+                            
+                            <!-- city weather info is displayed here -->
                         </div>
                     </div>
 
@@ -72,30 +61,22 @@
                         <div class="row"> 
                             <h5 class="col-12 five-day-title">5-Day Forecast:</h5>
                         </div>
-                        <div id="five-day-cards" class="row">
+                        <div id="five-day-cards" class="row card-group">
 
-                            <div class="card weather-card">
-                                <div class="card-body pb-3">
-                                    <h6 class="date">8/16/2019</h6>
-                                    <div id="icondiv" class="d-flex justify-content-between"><i class="fas fa-cloud-sun-rain fa-lg text-info"></i></div>
-                                    <p>Temp: </p>
-                                    <p>Humidity: </p>
-                                </div>
-                            </div> 
+                            <!-- five day forecast is displayed here  -->
 
                         </div>
                     </div>
-
-
-                    
+    
                 </div>
                 
             </div>
             
         </main>
 
-        <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-
+        <!-- <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script> -->
+        <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+        
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>

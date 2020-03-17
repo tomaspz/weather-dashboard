@@ -29,6 +29,10 @@ form {
     margin-left: 10px;
 }
 
+#basic-text1 {
+    cursor: pointer;
+}
+
 .input-group-text{
     background-color: #007bff;
 }
@@ -71,6 +75,11 @@ form {
 
 /* This is the blue card body for the 5 day forecast */
 .pb-3 {
+    margin-left: 10px;
     background-color: #007bff;
     color: white;
+}
+
+.weather-card {
+    display: inline-block;
 }
